@@ -33,4 +33,34 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  "GET /team/": {
+    controller: "TeamController",
+    action: "getAllTeams",
+    cors: true
+  },
+
+  "POST /team/": {
+    controller: "TeamController",
+    action: "createTeam",
+    cors: true
+  },
+
+  "GET /team/:id": {
+    controller: "TeamController",
+    action: "getTeam",
+    cors: true
+  },
+
+  "PUT /team/:id": {
+    controller: "TeamController",
+    action: "updateTeam",
+    cors: true
+  },
+
+  "DELETE /team/:id": {
+    controller: "TeamController",
+    action: "deleteTeam",
+    cors: true
+  },
+
 };

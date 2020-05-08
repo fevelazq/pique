@@ -33,12 +33,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  "GET /team/": {
-    controller: "TeamController",
-    action: "getAllTeams",
-    cors: true
-  },
-
   "POST /team/": {
     controller: "TeamController",
     action: "createTeam",
@@ -62,5 +56,35 @@ module.exports.routes = {
     action: "deleteTeam",
     cors: true
   },
+
+  "GET /team/:id/match": {
+    controller: "MatchController",
+    action: "getTeamMatches",
+    cors: true
+  },
+
+  "POST /team/:id/match": {
+    controller: "MatchController",
+    action: "createMatch",
+    cors: true
+  },
+
+  "GET /team/:id/match/:match_id": {
+    controller: "MatchController",
+    action: "getMatch",
+    cors: true
+  },
+
+  "PUT /team/:id/match/:match_id/": {
+    controller: "MatchController",
+    action: "updateMatch",
+    cors: true
+  },
+
+  "DELETE /team/:id/match/:match_id/": {
+    controller: "MatchController",
+    action: "deleteMatch",
+    cors: true
+  }
 
 };

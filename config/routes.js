@@ -91,7 +91,42 @@ module.exports.routes = {
     controller: "MatchController",
     action: "getCurrentMatch",
     cors: true
-  }
+  },
 
+  "GET /team/:id/post/": {
+    controller: "PostController",
+    action: "getTeamPosts",
+    cors: true
+  },
+
+  "GET /team/:id/post/total": {
+    controller: "PostController",
+    action: "getTotalPosts",
+    cors: true
+  },
+
+  "POST /team/:id/post/": {
+    controller: "PostController",
+    action: "createPost",
+    cors: true
+  },
+
+  "GET /team/:id/post/:post_id": {
+    controller: "PostController",
+    action: "getPost",
+    cors: true
+  },
+
+  "PUT /team/:id/post/:post_id": {
+    controller: "PostController",
+    action: "updatePost",
+    cors: true
+  },
+
+  "DELETE /team/:id/post/:post_id": {
+    controller: "PostController",
+    action: "deletePost",
+    cors: true
+  }
 
 };

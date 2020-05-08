@@ -85,6 +85,13 @@ module.exports.routes = {
     controller: "MatchController",
     action: "deleteMatch",
     cors: true
+  },
+
+  "GET /team/:id/match/current": {
+    controller: "MatchController",
+    action: "getCurrentMatch",
+    cors: true
   }
+
 
 };

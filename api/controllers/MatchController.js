@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const moment = require('moment');
+
 module.exports = {
 
     createMatch: async (req, res) => {
@@ -41,6 +43,45 @@ module.exports = {
     getMatch: async (req, res) => {
         const [match] = await Match.find({ id: req.params.match_id, active: true });
         if (!match) return res.status(404).json({ message: "The match doesn't exists." });
+
+        // set if is the current match
+        let isCurrent = null;
+        if (!!match.global_date) {
+            const _date = String(match.global_date);
+            let _matchDate = _date.indexOf("T") != -1 ? _date.split("T")[0] + "T00:00:00" : _date + "T00:00:00";
+            _matchDate = moment(_matchDate).format("YYYYMMDD");
+            const dateNow = moment().format("YYYYMMDD");
+            if (_matchDate >= dateNow) {
+                isCurrent = match;
+                if (match.id == isCurrent.id) match.current = true;
+            }
+        }
+
+        return res.status(200).json(match);
+    },
+
+    getCurrentMatch: async (req, res) => {
+        //TODO: INSERT A FEW MATCHES AND TEST
+        const team_id = req.params.id;
+        if (!team_id) return res.status(400).json({ message: "The team id is required." });
+
+        const matches = await Match.find({ team_id: team_id, active: true });
+
+        let match = null;
+        for (let i = 0, len = matches.length; i < len; i++) {
+            const _match = matches[i]
+
+            if (!!_match.global_date) {
+                let _date = String(_match.global_date)
+                let _matchDate = _date.indexOf('T') != -1 ? (_date.split('T')[0] + 'T00:00:00') : (_date + 'T00:00:00')
+                _matchDate = moment(_matchDate).format('YYYYMMDD')
+                let dateNow = moment().format('YYYYMMDD')
+                if (_matchDate >= dateNow) {
+                    match = _match
+                    break;
+                }
+            }
+        }
 
         return res.status(200).json(match);
     },

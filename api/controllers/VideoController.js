@@ -24,7 +24,7 @@ module.exports = {
 
 
     getTotalVideos: async (req, res) => {
-        const total = await Videos.count({ team_id: req.params.id });
+        const total = await Video.count({ team_id: req.params.id });
 
         return res.status(200).json({ total });
     },

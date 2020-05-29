@@ -1,36 +1,37 @@
 /**
- * PostController
+ * VideoController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+
 module.exports = {
 
-    getTeamPosts: async (req, res) => {
+    getTeamVideos: async (req, res) => {
         let skip = req.query.skip ? req.query.skip : 0;
         let limit = req.query.limit ? req.query.limit : 10;
 
         const _id = req.params.id;
         if (!_id) return res.status(400).json({ message: "The team id is required." })
 
-        const posts = await Post.find({ team_id: _id })
+        const videos = await Video.find({ team_id: _id })
             .skip(skip)
             .limit(limit);
 
-        return res.status(200).json(posts);
+        return res.status(200).json(videos);
     },
 
 
-    getTotalPosts: async (req, res) => {
-        const total = await Post.count({ team_id: req.params.id });
+    getTotalVideos: async (req, res) => {
+        const total = await Videos.count({ team_id: req.params.id });
 
         return res.status(200).json({ total });
     },
 
 
-    createPost: async (req, res) => {
-        await Post.create(req.body, (error, post) => {
+    createVideo: async (req, res) => {
+        await Video.create(req.body, (error, video) => {
             if (error) {
                 if (error.code == "E_VALIDATION") {
                     return res.status(400).json({ message: `The param ${Object.keys(error.invalidAttributes)[0]} is required.` })
@@ -40,37 +41,37 @@ module.exports = {
     },
 
 
-    getPost: async (req, res) => {
-        const _id = req.params.post_id;
+    getVideo: async (req, res) => {
+        const _id = req.params.video_id;
         if (!_id) return res.status(400).json({ message: "The param id is required." })
 
-        const [post] = await Post.find({ id: _id });
+        const [video] = await Video.find({ id: _id });
 
-        return res.status(200).json(post);
+        return res.status(200).json(video);
     },
 
 
-    updatePost: async (req, res) => {
-        const _id = req.params.post_id;
+    updateVideo: async (req, res) => {
+        const _id = req.params.video_id;
         if (!_id) return res.status(400).json({ message: "The param id is required." })
 
-        const [postExists] = await Post.find({ id: _id });
-        if (!postExists) return res.status(404).json({ message: "The post doesn't exists." });
+        const [videoExists] = await Video.find({ id: _id });
+        if (!videoExists) return res.status(404).json({ message: "The video doesn't exists." });
 
-        const updatedPost = await Post.update({ id: _id }, req.body).fetch();
+        const updatedVideo = await Video.update({ id: _id }, req.body).fetch();
 
-        return res.status(200).json(updatedPost);
+        return res.status(200).json(updatedVideo);
     },
 
 
-    deletePost: async (req, res) => {
-        const _id = req.params.post_id;
+    deleteVideo: async (req, res) => {
+        const _id = req.params.video_id;
         if (!_id) return res.status(400).json({ message: "The param id is required." })
 
-        const [post] = await Post.find({ id: _id });
-        if (!post) return res.status(404).json({ message: "The post doesn't exists." });
+        const [video] = await Video.find({ id: _id });
+        if (!video) return res.status(404).json({ message: "The video doesn't exists." });
 
-        await Post.destroy(post);
+        await Video.destroy(video);
 
         return res.ok("Done");
     }

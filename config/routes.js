@@ -163,6 +163,45 @@ module.exports.routes = {
     controller: "PostController",
     action: "deleteVideo",
     cors: true
+  },
+
+  //statistics
+  //players
+
+  "GET /team/:id/player/": {
+    controller: "PlayerController",
+    action: "getPlayers",
+    cors: true
+  },
+
+  "GET /team/:id/player/total": {
+    controller: "PlayerController",
+    action: "getTotal",
+    cors: true
+  },
+
+  "POST /team/:id/player/": {
+    controller: "PlayerController",
+    action: "createPlayer",
+    cors: true
+  },
+
+  "GET /team/:id/player/:player_id": {
+    controller: "PlayerController",
+    action: "getPlayer",
+    cors: true
+  },
+
+  "PUT /team/:id/player/:player_id": {
+    controller: "PlayerController",
+    action: "updatePlayer",
+    cors: true
+  },
+
+  "DELETE /team/:id/player/:player_id": {
+    controller: "PlayerController",
+    action: "deletePlayer",
+    cors: true
   }
 
 };

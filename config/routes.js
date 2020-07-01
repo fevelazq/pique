@@ -165,8 +165,29 @@ module.exports.routes = {
     cors: true
   },
 
-  //statistics
-  //players
+  "POST /team/:id/tournament": {
+    controller: "TournamentController",
+    action: "createTournament",
+    cors: true
+  },
+
+  "GET /tournament/:tournament_id": {
+    controller: "TournamentController",
+    action: "getTournament",
+    cors: true
+  },
+
+  "PUT /tournament/:tournament_id": {
+    controller: "TournamentController",
+    action: "updateTournament",
+    cors: true
+  },
+
+  "DELETE /tournament/:tournament_id": {
+    controller: "TournamentController",
+    action: "deleteTournament",
+    cors: true
+  },
 
   "GET /team/:id/player/": {
     controller: "PlayerController",

@@ -6,55 +6,54 @@
  */
 
 module.exports = {
+	createTeam: async (req, res) => {
+		const [teamExists] = await Team.find({ name: req.body.name });
+		if (teamExists) return res.status(400).json({ message: "The team name exists." });
 
-    createTeam: async (req, res) => {
-        const [teamExists] = await Team.find({ name: req.body.name, active: true });
-        if (teamExists) return res.status(400).json({ message: "The name exists." })
+		await Team.create(req.body)
+			.fetch()
+			.exec(function (error, team) {
+				if (error) {
+					if (error.code == "E_VALIDATION") {
+						return res
+							.status(400)
+							.json({ message: `The param ${Object.keys(error.invalidAttributes)[0]} is required.` });
+					} else return res.status(400).json({ message: "Oops, something went wrong." });
+				}
+				return res.status(200).json(team);
+			});
+	},
 
-        await Team.create(req.body, (error, team) => {
-            if (error) {
-                if (error.code == "E_VALIDATION") {
-                    return res.status(400).json({ message: `The param ${Object.keys(error.invalidAttributes)[0]} is required.` })
-                } else return res.status(400).json({ message: "Oops, something went wrong." })
-            } else return res.ok("Done");
-        })
-    },
+	getTeam: async (req, res) => {
+		const { team_id } = req.params;
+		if (!team_id) return res.status(400).json({ message: "The team_id is required." });
 
+		const [team] = await Team.find({ id: team_id });
 
-    getTeam: async (req, res) => {
-        const _id = req.params.id;
-        if (!_id) return res.status(400).json({ message: "The param id is required." })
+		return res.status(200).json(team);
+	},
 
-        const [team] = await Team.find({ id: _id, active: true });
+	updateTeam: async (req, res) => {
+		const { team_id } = req.params;
+		if (!team_id) return res.status(400).json({ message: "The team_id is required." });
 
-        return res.status(200).json(team);
-    },
+		const [teamExists] = await Team.find({ id: team_id });
+		if (!teamExists) return res.status(404).json({ message: "The team doesn't exists." });
 
+		const updatedTeam = await Team.update({ id: team_id }, req.body).fetch();
 
-    updateTeam: async (req, res) => {
-        const _id = req.params.id;
-        if (!_id) return res.status(400).json({ message: "The param id is required." })
+		return res.status(200).json(updatedTeam);
+	},
 
-        const [teamExists] = await Team.find({ id: _id, active: true });
-        if (!teamExists) return res.status(404).json({ message: "The team doesn't exists." });
+	deleteTeam: async (req, res) => {
+		const { team_id } = req.params;
+		if (!team_id) return res.status(400).json({ message: "The team_id is required." });
 
-        const updatedTeam = await Team.update({ id: _id }, req.body).fetch();
+		const [team] = await Team.find({ id: team_id });
+		if (!team) return res.status(404).json({ message: "The team doesn't exists." });
 
-        return res.status(200).json(updatedTeam);
-    },
+		await Team.destroy(team);
 
-
-    deleteTeam: async (req, res) => {
-        const _id = req.params.id;
-        if (!_id) return res.status(400).json({ message: "The param id is required." })
-
-        const [team] = await Team.find({ id: _id, active: true });
-        if (!team) return res.status(404).json({ message: "The team doesn't exists." });
-
-        await Team.destroy(team);
-
-        return res.ok("Done");
-    },
-
+		return res.ok();
+	}
 };
-

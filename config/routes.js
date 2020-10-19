@@ -33,139 +33,146 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  "POST /team/": {
+  // CRUD ===== CREATE // READ // UPDATE // DELETE //
+  "POST /team": {
     controller: "TeamController",
     action: "createTeam",
     cors: true
   },
 
-  "GET /team/:id": {
+  "GET /team/:team_id": {
     controller: "TeamController",
     action: "getTeam",
     cors: true
   },
 
-  "PUT /team/:id": {
+  "PUT /team/:team_id": {
     controller: "TeamController",
     action: "updateTeam",
     cors: true
   },
 
-  "DELETE /team/:id": {
+  "DELETE /team/:team_id": {
     controller: "TeamController",
     action: "deleteTeam",
     cors: true
   },
 
-  "GET /team/:id/match": {
+  "GET /team/:team_id/match": {
     controller: "MatchController",
-    action: "getTeamMatches",
+    action: "getMatches",
     cors: true
   },
 
-  "POST /team/:id/match": {
+  "POST /team/:team_id/match": {
     controller: "MatchController",
     action: "createMatch",
     cors: true
   },
 
-  "GET /team/:id/match/:match_id": {
+  "GET /team/:team_id/match/:match_id": {
     controller: "MatchController",
     action: "getMatch",
     cors: true
   },
 
-  "PUT /team/:id/match/:match_id/": {
+  "PUT /team/:team_id/match/:match_id/": {
     controller: "MatchController",
     action: "updateMatch",
     cors: true
   },
 
-  "DELETE /team/:id/match/:match_id/": {
+  "DELETE /team/:team_id/match/:match_id/": {
     controller: "MatchController",
     action: "deleteMatch",
     cors: true
   },
 
-  "GET /team/:id/match/current": {
+  "GET /team/:team_id/match/current": {
     controller: "MatchController",
     action: "getCurrentMatch",
     cors: true
   },
 
-  "GET /team/:id/post/": {
+  "GET /team/:team_id/post/": {
     controller: "PostController",
     action: "getTeamPosts",
     cors: true
   },
 
-  "GET /team/:id/post/total": {
+  "GET /team/:team_id/post/total": {
     controller: "PostController",
     action: "getTotalPosts",
     cors: true
   },
 
-  "POST /team/:id/post/": {
+  "POST /team/:team_id/post/": {
     controller: "PostController",
     action: "createPost",
     cors: true
   },
 
-  "GET /team/:id/post/:post_id": {
+  "GET /team/:team_id/post/:post_id": {
     controller: "PostController",
     action: "getPost",
     cors: true
   },
 
-  "PUT /team/:id/post/:post_id": {
+  "PUT /team/:team_id/post/:post_id": {
     controller: "PostController",
     action: "updatePost",
     cors: true
   },
 
-  "DELETE /team/:id/post/:post_id": {
+  "DELETE /team/:team_id/post/:post_id": {
     controller: "PostController",
     action: "deletePost",
     cors: true
   },
 
-  "GET /team/:id/video/": {
+  "GET /team/:team_id/video/": {
     controller: "VideoController",
     action: "getTeamVideos",
     cors: true
   },
 
-  "GET /team/:id/video/total": {
+  "GET /team/:team_id/video/total": {
     controller: "VideoController",
     action: "getTotalVideos",
     cors: true
   },
 
-  "POST /team/:id/video/": {
+  "POST /team/:team_id/video/": {
     controller: "VideoController",
     action: "createVideo",
     cors: true
   },
 
-  "GET /team/:id/video/:video_id": {
+  "GET /team/:team_id/video/:video_id": {
     controller: "VideoController",
     action: "getVideo",
     cors: true
   },
 
-  "PUT /team/:id/video/:video_id": {
+  "PUT /team/:team_id/video/:video_id": {
     controller: "VideoController",
     action: "updateVideo",
     cors: true
   },
 
-  "DELETE /team/:id/video/:video_id": {
+  "DELETE /team/:team_id/video/:video_id": {
     controller: "PostController",
     action: "deleteVideo",
     cors: true
   },
 
-  "POST /team/:id/tournament": {
+  "GET /team/:team_id/tournament": {
+    controller: "TournamentController",
+    action: "getTeamTournaments",
+    cors: true
+  },
+
+  "POST /team/:team_id/tournament": {
     controller: "TournamentController",
     action: "createTournament",
     cors: true
@@ -183,43 +190,43 @@ module.exports.routes = {
     cors: true
   },
 
-  "DELETE /tournament/:tournament_id": {
+  "DELETE /team/:team_id/tournament/:tournament_id": {
     controller: "TournamentController",
     action: "deleteTournament",
     cors: true
   },
 
-  "GET /team/:id/player/": {
+  "GET /team/:team_id/player/": {
     controller: "PlayerController",
     action: "getPlayers",
     cors: true
   },
 
-  "GET /team/:id/player/total": {
+  "GET /team/:team_id/player/total": {
     controller: "PlayerController",
     action: "getTotal",
     cors: true
   },
 
-  "POST /team/:id/player/": {
+  "POST /team/:team_id/player/": {
     controller: "PlayerController",
     action: "createPlayer",
     cors: true
   },
 
-  "GET /team/:id/player/:player_id": {
+  "GET /team/:team_id/player/:player_id": {
     controller: "PlayerController",
     action: "getPlayer",
     cors: true
   },
 
-  "PUT /team/:id/player/:player_id": {
+  "PUT /team/:team_id/player/:player_id": {
     controller: "PlayerController",
     action: "updatePlayer",
     cors: true
   },
 
-  "DELETE /team/:id/player/:player_id": {
+  "DELETE /team/:team_id/player/:player_id": {
     controller: "PlayerController",
     action: "deletePlayer",
     cors: true

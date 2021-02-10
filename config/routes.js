@@ -94,7 +94,7 @@ module.exports.routes = {
     cors: true
   },
 
-  "GET /team/:team_id/post/": {
+  "GET /team/:team_id/post/": { 
     controller: "PostController",
     action: "getTeamPosts",
     cors: true
@@ -161,7 +161,7 @@ module.exports.routes = {
   },
 
   "DELETE /team/:team_id/video/:video_id": {
-    controller: "PostController",
+    controller: "VideoController",
     action: "deleteVideo",
     cors: true
   },

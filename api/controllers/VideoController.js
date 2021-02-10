@@ -12,7 +12,7 @@ module.exports = {
         let skip = req.query.skip ? req.query.skip : 0;
         let limit = req.query.limit ? req.query.limit : 10;
 
-        const _id = req.params.id;
+        const _id = req.params.team_id;
         if (!_id) return res.status(400).json({ message: "The team id is required." })
 
         const videos = await Video.find({ team_id: _id })
@@ -31,13 +31,21 @@ module.exports = {
 
 
     createVideo: async (req, res) => {
-        await Video.create(req.body, (error, video) => {
-            if (error) {
-                if (error.code == "E_VALIDATION") {
-                    return res.status(400).json({ message: `The param ${Object.keys(error.invalidAttributes)[0]} is required.` })
-                } else return res.status(400).json({ message: "Oops, something went wrong." })
-            } else return res.ok();
-        })
+        const _body = {
+            team_id: req.params.team_id,
+            active: true,
+            ...req.body
+        }
+
+        await Video.create(_body)
+            .fetch()
+            .exec(function (error, video) {
+                if (error) {
+                    if (error.code == "E_VALIDATION") {
+                        return res.status(400).json({ message: `The param ${Object.keys(error.invalidAttributes)[0]} is required.` })
+                    } else return res.status(400).json({ message: "Oops, something went wrong." })
+                } else return res.status(200).json(video);
+            })
     },
 
 

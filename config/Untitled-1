@@ -1,0 +1,18 @@
+//INSERT MATCH
+{
+	"team_id": "5eb4a806a823751ff60c75ec",
+	"date": "ENERO 12, 12:00",
+    "global_date": "2020-01-12T18:00:00.000Z",
+    "tournament": "Liga MX",
+    "place": "Estadio Olímpico Universitario",
+    "local_team": "5eb4a806a823751ff60c75ec",
+    "visitor_team": "5eb4a8cfc6e1ac2021cde290",
+    "active": true
+}
+
+//INSERT TEAM
+{
+    "name": "Pumas",
+    "asset": "pumas",
+    "active": true
+}

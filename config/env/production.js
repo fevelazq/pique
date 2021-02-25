@@ -149,7 +149,7 @@ module.exports = {
     ***************************************************************************/
     cors: {
       allowOrigins: [
-        'https://fb-pique.herokuapp.com/',
+        'https://fb-pique.herokuapp.com/'
       ]
     },
 
@@ -251,7 +251,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-      'https://fb-pique.herokuapp.com/',
+      'https://fb-pique.herokuapp.com/'
     ],
 
 

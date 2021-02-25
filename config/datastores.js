@@ -49,12 +49,12 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-mongo',
-    // url: 'mysql://user:password@host:port/database',
-    host: 'localhost',
-    port: 27017,
+    url: 'mongodb://fevelazq:futbasedbmx@clusterfutbase-shard-00-00.gf39i.mongodb.net:27017,clusterfutbase-shard-00-01.gf39i.mongodb.net:27017,clusterfutbase-shard-00-02.gf39i.mongodb.net:27017/futbase?ssl=true&replicaSet=atlas-kuefkm-shard-0&authSource=admin&retryWrites=true&w=majority',
+    // host: 'localhost',
+    // port: 27017,
     // user: 'username', //optional
     // password: 'password', //optional
-    database: 'futbase' //optional
+    // database: 'futbase' //optional
 
   },
 

@@ -10,7 +10,7 @@ const { FIRST_TEAM, WOMEN_TEAM, GOALKEEPER, DEFENDER, MIDFIELDERS, FORWARDS } = 
 module.exports = {
 
     getPlayers: async (req, res) => {
-        const team_id = req.params.id;
+        const team_id = req.params.team_id;
         const mobile = req.query.mobile;
         const skip = req.query.skip ? req.query.skip : 0;
         const limit = req.query.limit;
